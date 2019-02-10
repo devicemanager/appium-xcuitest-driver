@@ -10,7 +10,7 @@ env:
     - RECURSIVE=--recursive
     - MAX_PARALLEL=0
     - DEBUG=mocha-parallel-tests
-    - secure: ls4nb5gcu0USHauJOkB9R5p86PMPJd/wCIQWjj/bhAfLNpSNNthtss2Ss9M7BjJg8lth8c85MrGfkAZOGgXknNtlQ2HHwKK4fbEiLAKLDS9diac6/OpAsxxE1/OvletYhkKLQSqb8d5Ju3S/xY6SmNDIzHUpeTYV2/5Ve+7Fh9zc1RztxsPwV1vxPtL6w0IAzNS9PQOmDXQ6x9KuZModtR7ohVKD47A91MzBlu3kk1CSaeQ4I8l7eXi4R9J6F81jkr51Vzoam4B6+4HTepSdfo02irBQWzaJ3VtRCbazFRBc/wfe4YgOPQTD9k69FiP19sa28lP9eSn6h5OCSXA9M803kju33Ml6OItRWDG0gUG1dzTroVXELEIcfnw1iTsFqKWoJLaEzEiXV8n2RsXLaLC5SHPgKwGEigGMfWDxM9leIC8hgervjQvApmx7btzq9S50tMcrzba5qwXDDrjJi1wKSjd4pQajhSj9VgOH9D5ihZBdn++VLwEvfAd4yQhjdsr9+COV1HrgK7Ro1HAHWgGnPtwBKiQdVU20QdQzNrhRdF2MLrJ4BfWpNm92JwlPxP/ojuA2l8mr9nDqlfBgXlnG32j59988gi85vaMfXssrUXtdJqsKJckI01c/mgaRh9pvG3UPX8K39quKBI5ftS8aCCa8tbF6bLq/ZuI2TRU=
+    - secure: "FQsmPePKtAjvVLpmb26Fr+o6+p1H0apwhGFmCRKn3A+7HhSbl+3DaxKm16RhLnruo+AYRlourSbj7KddgGzHLlvr63fwqrd9WR3oHIDwI1eyBZxbXnvHIrKxOQQsPZx00oLtidQ4fNq1OpqpMBWINOsi4R0tlt4vpewv++DBwOeUmdlzWM66VeATVrQLxTx7HbyYRfTBgTCyC2zQveBFkkWQYH9klOOgre4CMr6QvPr4VNLrWWBWy1+ZIYBl4nJt5hqhhC12bWnUQlJP+TzZVB6zo09hyW2hPPLTZxMb+oFY7Mj0PmUP1Mm+2xX90j04/Jh6bsCnmi4n4JfdooRE3krxavzq8pdNQ4a4KjRCJjrBELr2vNPlkK54hqCoa++w9mRuYDztQcnJQyGzhUFqn7yqDdqPdUl6qa4Zn41GJDzXikz51ITb9ZU3/pb1FSxePWZ5Q3Nx7pcZHWFt+gRROEAHQizdqqk//7isLBQU1ReLzgJd+sl6YG4NS7q0mxnEjZyPCeIO3z45ODmrSKguwt6oRraFe/0hYtnQVgAoCx0GajSh8haqInyRHDvydI0+9nvRAUPdynhm1jxGjM3ZyfutcpQIveLYyKV6WrgYkwETZOOGFJ/MzCI4vF+bSkMshWuNhH3vprnWWjTDnBSWFSn4y6pFSBjf2MPWt6e4YYQ="
 jobs:
   include:
     - stage: tests
@@ -44,23 +44,23 @@ jobs:
       osx_image: xcode9.4
       env: CI_METRICS=1 PLATFORM_VERSION=11.4 TEST=functional/web
 
-    #- stage: "[CRON] Upload Appium build to Sauce Storage"
-    #  if: type = cron
-    #  os: linux
-    #  env: CLOUD=1
-    #  script: $(npm bin)/gulp sauce-storage-upload
+    - stage: "[CRON] Upload Appium build to Sauce Storage"
+      if: type = cron
+      os: linux
+      env: CLOUD=1
+      script: $(npm bin)/gulp sauce-storage-upload
 
-    # Sauce Emusim tests
-    #- stage: "[CRON] Sauce Emusim tests"
-    #  if: type = cron
-    #  os: linux
-    #  name: Basic, device 0
-    #  env: CLOUD=1 SAUCE_EMUSIM_DEVICE_INDEX=0 TEST=functional/basic
-    #- stage:
-    #  if: type = cron
-    #  os: linux
-    #  name: Basic, device 1
-    #  env: CLOUD=1 SAUCE_EMUSIM_DEVICE_INDEX=1 TEST=functional/basic
+     Sauce Emusim tests
+    - stage: "[CRON] Sauce Emusim tests"
+      if: type = cron
+      os: linux
+      name: Basic, device 0
+      env: CLOUD=1 SAUCE_EMUSIM_DEVICE_INDEX=0 TEST=functional/basic
+    - stage:
+      if: type = cron
+      os: linux
+      name: Basic, device 1
+      env: CLOUD=1 SAUCE_EMUSIM_DEVICE_INDEX=1 TEST=functional/basic
     #- stage:
     #  if: type = cron
     #  os: linux
